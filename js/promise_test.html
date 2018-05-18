@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <input id="test" type="checkbox">
+</head>
+<!--<script src="https://cdn.bootcss.com/jquery/1.2.6/jquery.min.js"></script>-->
+<body>
+<script>
+	function resolve(param) {
+		console.warn('resolve', param);
+	}
+	function reject(param) {
+		console.warn('reject', param);
+	}
+	let promise1 = new Promise(function (resolve, reject) {
+		const xhr = new XMLHttpRequest();
+		xhr.open("GET", './test.json');
+		xhr.send();
+		xhr.onload = () => {
+			resolve(xhr.responseText);
+		};
+		xhr.onerror = () => {
+			reject(xhr.statusText)
+		};
+	});
+	let promise2 = new Promise(function (resolve, reject) {
+		const xhr = new XMLHttpRequest();
+		xhr.open("GET", './test2.json');
+		xhr.send();
+		xhr.onload = () => {
+			resolve(xhr.responseText);
+		};
+		xhr.onerror = () => {
+			reject(xhr.statusText)
+		};
+	});
+	Promise.all([promise1,promise2]).then(resolve,reject);
+</script>
+</body>
+</html>

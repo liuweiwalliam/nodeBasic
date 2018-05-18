@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <input id="test" type="checkbox">
+</head>
+<!--<script src="https://cdn.bootcss.com/jquery/1.2.6/jquery.min.js"></script>-->
+<body>
+<script>
+	async function testAsync() {
+		return "hello async";
+	}
+
+	const result = testAsync();
+	console.log(result.then(function (val) {
+		console.warn(val);
+	}));
+</script>
+</body>
+</html>

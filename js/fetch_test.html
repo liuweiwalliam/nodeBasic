@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <input id="test" type="checkbox">
+</head>
+<!--<script src="https://cdn.bootcss.com/jquery/1.2.6/jquery.min.js"></script>-->
+<body>
+<script>
+	function resolve(res) {
+		console.warn('resolve', res);//res.text()返回一个promise对象
+		res.json().then(function (val) {
+			console.warn(val);
+		})
+	}
+
+	function reject(res) {
+		console.warn('reject', res);
+	}
+
+	let jsonData = {a: 1, b: 2};
+	let data = new URLSearchParams(jsonData).toString();
+	// console.warn(new URLSearchParams([["foo", 1], ["bar", 2]]));//将json转换为form对象
+	window.fetch('./test.json?_ijt=615eouo3duqe24m2h5pdsjfr37', {
+		method: 'POST',
+		body: data, // 这里是请求对象
+		headers: new Headers({
+			'Content-Type': 'application/x-www-form-urlencoded' // 指定提交方式为表单提交
+		}),
+	}).then(resolve, reject)
+</script>
+</body>
+</html>
