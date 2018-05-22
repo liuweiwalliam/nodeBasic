@@ -10,6 +10,7 @@
 <div id="root"></div>
 <script>
 	let a = [1, 2, 3];
+
 	function iteratore(arr) {
 		let len = arr.length;
 		let i = 0;
@@ -21,6 +22,16 @@
             }else{
 				return 'finished'
             }
+
+		}
+		function hasNext() {
+			if(i<= len-1){
+				let param = arr[i];
+				i++;
+				return param
+			}else{
+				return 'finished'
+			}
 
 		}
 		return {
